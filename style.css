@@ -1,0 +1,57 @@
+body {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#canvas_wrap {
+    position: relative;
+}
+
+#canvas {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#player_stats {
+    position:absolute;
+    top:20px;
+    left:30px;
+    border: 1px solid white;
+    height: 100px;
+    width: 250px;
+}
+
+#game_stats {
+    position:absolute;
+    top:20px;
+    right:30px;
+    border: 1px solid white;
+    height: 100px;
+    width: 250px;
+}
+
+#text_box {
+    position:absolute;
+    top:35%;
+    left:30%;
+    border: 1px solid white;
+    height: 25%;
+    width: 35%;
+}
+
+#input_box {
+    position:absolute;
+    top:65%;
+    left:30%;
+    border: 1px solid white;
+    height: 15%;
+    width: 35%;
+}
