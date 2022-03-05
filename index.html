@@ -7,10 +7,33 @@
 <body>
     <div id="canvas_wrap">
         <canvas id="canvas"></canvas>
-        <div id="player_stats"></div>
-        <div id="game_stats"></div>
-        <div id="text_box"></div>
-        <div id="input_box"></div>
+        <div id="player_stats">
+            <ul>
+                <li id="oxygen">Oxigen:<span id="oxygen_val">100%</span></li>
+                <li id="vitals">Vitals:<span id="vitals_val">100%</span></li>
+                <li id="resolute">Resolute:<span id="resolute_val">100%</span></li>
+                <li id="panic">Panic:<span id="panic_val">0%</span></li>
+            </ul>
+        </div>
+        <div id="game_stats">
+            <ul>
+                <li id="time_elapsed">Timer:<span id="time_elapsed_val">0</span>s</li>
+                <li id="chapter">Chapter:<span id="chapter_val">1</span></li>
+                <li id="route">Route:<span id="route_val">1</span></li>
+                <li id="progress">Progress:<span id="progress_val">0%</span></li>
+            </ul>
+        </div>
+        <div id="text_box">
+            <span class="text_box_text" id="text_box_text">
+                I am the the text
+            </span>
+        </div>
+        <div id="input_box">
+            <input type="button" id="choice_1" value="option 1" />
+            <input type="button" id="choice_2" value="option 2" />
+            <input type="button" id="choice_3" value="option 3" />
+            <input type="button" id="choice_4" value="option 4" />
+        </div>
     </div>
     <script type="text/javascript" rel="noopener" target="_blank" src="js_starfield.js"></script>
     <script type="text/javascript" rel="noopener" target="_blank" src="js_game.js"></script>
