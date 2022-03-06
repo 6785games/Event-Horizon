@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" rel="noopener" target="_blank" href="style.css">
 </head>
 <body>
+    <button id="start_button" value="start">Start</button>
     <div id="canvas_wrap">
         <canvas id="canvas"></canvas>
         <div id="player_stats">
@@ -18,7 +19,7 @@
         <div id="game_stats">
             <ul>
                 <li id="time_elapsed">Timer: <span id="time_elapsed_val">0</span>s</li>
-                <li id="chapter">Chapter: <span id="chapter_val">1</span>-<span id="route_val">1</span></li>
+                <li id="chapter">Chapter: <span id="chapter_val"></span>-<span id="route_val"></span></li>
                 <li id="progress">Progress: <span id="progress_val">0</span>%</li>
             </ul>
         </div>
@@ -27,10 +28,10 @@
             </span>
         </div>
         <div id="input_box">
-            <input type="button" id="option_1" value="1" />
-            <input type="button" id="option_2" value="2" />
-            <input type="button" id="option_3" value="3" />
-            <input type="button" id="option_4" value="4" />
+            <button id="option_1" value="1"></button>
+            <button id="option_2" value="2"></button>
+            <button id="option_3" value="3"></button>
+            <button id="option_4" value="4"></button>
         </div>
     </div>
     <script type="text/javascript" rel="noopener" target="_blank" src="js_chapters.js"></script>
