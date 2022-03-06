@@ -1,4 +1,8 @@
 window.addEventListener("load", function(){
+  /**
+   * GAME CONFIG AND VARIABLES
+   */
+
   // Game defaults
   // how long will each stage last on screen?
   // seconds might decrease based on panic increase
@@ -28,8 +32,6 @@ window.addEventListener("load", function(){
   // UI elements
   let game_area = document.getElementById("canvas_wrap");
   let text_box_text = document.getElementById("text_box_text");
-  let chapter_val = document.getElementById("chapter_val");
-  let route_val = document.getElementById("route_val");
 
   let option_1 = document.getElementById("option_1");
   let option_2 = document.getElementById("option_2");
@@ -43,44 +45,53 @@ window.addEventListener("load", function(){
       current_choice = clicked_button.value;
       // resolve the action
       resolve();
-      // load the next block
-      load_next();
     });
   }
 
+  // Player stats UI elements
   let oxygen = document.getElementById("oxygen_val");
   let sanity = document.getElementById("sanity_val");
   let morale = document.getElementById("morale_val");
   let panic = document.getElementById("panic_val");
 
-  // Game variables
+  // Game stats UI elements
+  let time_elapsed_val = document.getElementById("time_elapsed_val");
+  let chapter_val = document.getElementById("chapter_val");
+  let route_val = document.getElementById("route_val");
+  let progress_val = document.getElementById("progress_val");
+
+  // Game variables (defaults to start with)
   let is_playing = false;
   let current_chapter = 1;
   let current_route = 1;
-  let current_choice = 0;
+  let current_choice = 1;
   let next_route = [1, 1];
-  
-  //let inst = setInterval(change, intervalTimer);
+
+  /**
+   * GAME LOGIC
+   */
 
   function load_next() {
+    // load the next block of story
     current_chapter = next_route[0];
     current_route = next_route[1];
+
+    // call to update
     update();
   }
 
   function resolve() {
     // gets the modifier based on the player's choice, updates them accordingly
     let choice = chapters[current_chapter][current_route].options[current_choice];
-    let modifiers = choice.modifiers;
+    resolve_modifiers(choice.modifiers);
+
+    // update the next route one needs to go to
     next_route = choice.go_to;
-
-    console.log('Current choice ', choice);
-    console.log('Next route', next_route);
-
-    resolve_modifiers(modifiers);
+    load_next();
   }
 
   function resolve_modifiers(mods) {
+    // choice-based modifiers
     oxygen_modifier = mods.oxygen;
     sanity_modifier = mods.sanity;
     morale_modifier = mods.morale;
@@ -94,27 +105,29 @@ window.addEventListener("load", function(){
   }
 
   function update() {
+    // update game and player stats
     chapter_val.innerHTML = current_chapter;
     route_val.innerHTML = current_route;
+    //time_elapsed_val.innerHTML = 1;
+    //progress_val.innerHTML = 1;
     oxygen.innerHTML = oxygen_max;
     sanity.innerHTML = sanity_max;
     morale.innerHTML = morale_max;
     panic.innerHTML = panic_max;
 
-    // gets the current chapter
+    // gets the current block of story
     let current_obj = chapters[current_chapter][current_route];
 
-    // update UI steps
+    // update interactive UI text and options
     text_box_text.innerHTML = current_obj.text;
     option_1.innerHTML = current_obj.options[1].text;
     option_2.innerHTML = current_obj.options[2].text;
     option_3.innerHTML = current_obj.options[3].text;
     option_4.innerHTML = current_obj.options[4].text;
 
-    // set the defaults, so that if the player has not responded
+    // set the default choice so that if the player has not responded
     // when the timer expires, we make a choice for them (evil!)
     current_choice = current_obj.default;
-    next_route = current_obj.options[current_choice].go_to;
   }
 
   function prepareForStart() {
@@ -132,12 +145,12 @@ window.addEventListener("load", function(){
     update();
   };
 
+  // start button
   let start_button = document.getElementById("start_button");
   start_button.addEventListener('click', function(event){
     if (is_playing === false) {
       startGame();
     }
   });
-  
-  update();
+  //let inst = setInterval(update, intervalTimer);
 });
